@@ -1,0 +1,132 @@
+{
+  "scenarios": [
+    {
+      "scenarioName": "All Metrics Increase",
+      "description": "All major metrics improved compared to the previous week.",
+      "metrics": {
+        "users": {
+          "previousWeek": 1250,
+          "currentWeek": 1390,
+          "direction": "increase"
+        },
+        "sessions": {
+          "previousWeek": 1600,
+          "currentWeek": 1785,
+          "direction": "increase"
+        },
+        "engagementRate": {
+          "previousWeek": "62%",
+          "currentWeek": "66%",
+          "direction": "increase"
+        },
+        "conversions": {
+          "previousWeek": 48,
+          "currentWeek": 57,
+          "direction": "increase"
+        },
+        "ctaClicks": {
+          "previousWeek": 135,
+          "currentWeek": 162,
+          "direction": "increase"
+        }
+      },
+      "expectedReportTone": "Positive overall performance with stronger engagement and conversion activity."
+    },
+    {
+      "scenarioName": "Users Decrease, Conversions Increase",
+      "description": "Traffic decreased, but conversion activity improved.",
+      "metrics": {
+        "users": {
+          "previousWeek": 1250,
+          "currentWeek": 1100,
+          "direction": "decrease"
+        },
+        "sessions": {
+          "previousWeek": 1600,
+          "currentWeek": 1500,
+          "direction": "decrease"
+        },
+        "engagementRate": {
+          "previousWeek": "62%",
+          "currentWeek": "68%",
+          "direction": "increase"
+        },
+        "conversions": {
+          "previousWeek": 48,
+          "currentWeek": 59,
+          "direction": "increase"
+        },
+        "ctaClicks": {
+          "previousWeek": 135,
+          "currentWeek": 170,
+          "direction": "increase"
+        }
+      },
+      "expectedReportTone": "Lower traffic volume, but stronger traffic quality and conversion behavior."
+    },
+    {
+      "scenarioName": "Traffic Increases, Engagement Drops",
+      "description": "More people visited the site, but engagement quality declined.",
+      "metrics": {
+        "users": {
+          "previousWeek": 1250,
+          "currentWeek": 1700,
+          "direction": "increase"
+        },
+        "sessions": {
+          "previousWeek": 1600,
+          "currentWeek": 2100,
+          "direction": "increase"
+        },
+        "engagementRate": {
+          "previousWeek": "62%",
+          "currentWeek": "48%",
+          "direction": "decrease"
+        },
+        "conversions": {
+          "previousWeek": 48,
+          "currentWeek": 48,
+          "direction": "same"
+        },
+        "ctaClicks": {
+          "previousWeek": 135,
+          "currentWeek": 132,
+          "direction": "decrease"
+        }
+      },
+      "expectedReportTone": "Traffic volume increased, but quality may have declined. Review traffic sources and landing page relevance."
+    },
+    {
+      "scenarioName": "Missing Data",
+      "description": "Some required fields are missing.",
+      "metrics": {
+        "users": {
+          "previousWeek": 1250,
+          "currentWeek": null,
+          "direction": "unknown"
+        },
+        "sessions": {
+          "previousWeek": 1600,
+          "currentWeek": 1785,
+          "direction": "increase"
+        },
+        "engagementRate": {
+          "previousWeek": "62%",
+          "currentWeek": null,
+          "direction": "unknown"
+        },
+        "conversions": {
+          "previousWeek": 48,
+          "currentWeek": 57,
+          "direction": "increase"
+        },
+        "ctaClicks": {
+          "previousWeek": 135,
+          "currentWeek": 162,
+          "direction": "increase"
+        }
+      },
+      "expectedReportTone": "Do not generate a final report until missing values are reviewed."
+    }
+  ]
+}
