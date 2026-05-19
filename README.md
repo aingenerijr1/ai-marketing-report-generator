@@ -14,7 +14,7 @@ Marketing reporting often requires manually reviewing metrics, calculating week-
   - AI API
   - GitHub
 
-## Current Status as of 5/18/26
+## Current Status
 Day 1: Project setup and spreadsheet prototype started.
 
 ## Day 1 Progress
@@ -42,6 +42,7 @@ Raw Data -> Weekly Comparison -> AI Prompt Input -> Generated Report
   - Created a combined final prompt block for AI reporting
   - Tested increase/decrease logic by temporarily changing sample data
   - Confirmed the prompt updates dynamically when Raw Data changes
+  - Created a sample JSON data file to represent the marketing report data in a structured format
 
 ## Current Formula Logic
 The spreadsheet now uses formulas to:
@@ -53,3 +54,10 @@ The spreadsheet now uses formulas to:
 
 ## Current AI Prompt Flow
 Raw Data -> Weekly Comparison -> AI Prompt Input -> Final Prompt Block -> Generated Report
+
+## Sample Data File
+This repo includes a sample JSON file:
+
+'sample-report-data.json'
+
+This file represents the weekly marketing performance data in a structured format that could later be used by n8n, an API request, or an AI reporting workflow.
