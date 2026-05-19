@@ -1,0 +1,52 @@
+{
+  "reportPeriod": {
+    "previousWeekStart": "2026-05-04",
+    "currentWeekStart": "2026-05-11"
+  },
+  "metrics": [
+    {
+      "metric": "users",
+      "previousWeek": 1250,
+      "currentWeek": 1390,
+      "change": 140,
+      "percentChange": "11.20%",
+      "direction": "increase"
+    },
+    {
+      "metric": "sessions",
+      "previousWeek": 1600,
+      "currentWeek": 1785,
+      "change": 185,
+      "percentChange": "11.56%",
+      "direction": "increase"
+    },
+    {
+      "metric": "engagementRate",
+      "previousWeek": "62%",
+      "currentWeek": "66%",
+      "change": "4 percentage points",
+      "percentChange": "6.45%",
+      "direction": "increase"
+    },
+    {
+      "metric": "conversions",
+      "previousWeek": 48,
+      "currentWeek": 57,
+      "change": 9,
+      "percentChange": "18.75%",
+      "direction": "increase"
+    },
+    {
+      "metric": "ctaClicks",
+      "previousWeek": 135,
+      "currentWeek": 162,
+      "change": 27,
+      "percentChange": "20.00%",
+      "direction": "increase"
+    }
+  ],
+  "topChannel": "Organic Search",
+  "topPage": "/services",
+  "keyInsight": "Traffic, engagement, conversions, and CTA clicks all increased compared to the previous week.",
+  "recommendedAction": "Review what drove the increase in Organic Search traffic and consider applying similar SEO or content tactics to other high-value pages."
+}
