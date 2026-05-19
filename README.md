@@ -36,3 +36,20 @@ Raw Data -> Weekly Comparison -> AI Prompt Input -> Generated Report
   - Make the AI Prompt Input tab pull values dynamically
   - Create a cleaner report prompt template
   - Begin learning how n8n can read spreadsheet data
+
+## Day 2 Progress
+  - Cleaned up AI Prompt Input wording
+  - Created a combined final prompt block for AI reporting
+  - Tested increase/decrease logic by temporarily changing sample data
+  - Confirmed the prompt updates dynamically when Raw Data changes
+
+## Current Formula Logic
+The spreadsheet now uses formulas to:
+  - Pull weekly performance data from the Raw Data tab
+  - Compare previous week and current week metrics
+  - Calculate numberic and precentage changes
+  - Generate marketing-friendly prompt lines
+  - Indentify whether metrics inceased, decreased, or stayed the same
+
+## Current AI Prompt Flow
+Raw Data -> Weekly Comparison -> AI Prompt Input -> Final Prompt Block -> Generated Report
