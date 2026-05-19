@@ -19,7 +19,7 @@ This project is designed to automate part of that process by turning raw perform
 - GitHub
 
 ## Current Status
-Day 2: Spreadsheet prototype, dynamic prompt logic, JSON sample data, and GitHub documentation are in progress.
+Day 2: Spreadsheet prototype, dynamic prompt logic, JSON sample data, prompt documentation, sample report output, and data dictionary documentation are in progress.
 
 ## Day 1 Progress
 - Created GitHub repository
@@ -40,6 +40,7 @@ Day 2: Spreadsheet prototype, dynamic prompt logic, JSON sample data, and GitHub
 - Created a sample JSON data file to represent the marketing report data in a structured format
 - Created a reusable report prompt template
 - Created a sample generated report output
+- Created a data dictionary to explain the spreadsheet and JSON fields
 - Updated README documentation to reflect current project files and workflow progress
 
 ## Current Workflow Draft
@@ -69,6 +70,9 @@ This repo currently includes:
 - `sample-generated-report.md`  
   A sample report output showing what the final AI-generated report should look like.
 
+- `data-dictionary.md`  
+  Documentation explaining the fields used in the spreadsheet, JSON sample data, and future automation workflow.
+
 ## Sample Data File
 This repo includes a sample JSON file:
 
@@ -76,12 +80,19 @@ This repo includes a sample JSON file:
 
 This file represents the weekly marketing performance data in a structured format that could later be used by n8n, an API request, or an AI reporting workflow.
 
+## Data Dictionary
+This repo also includes a data dictionary:
+
+`data-dictionary.md`
+
+The data dictionary explains the meaning of each major field used in the project, including report period fields, metric fields, marketing fields, and spreadsheet tabs.
+
 ## Current Project Status
 The project currently has a working spreadsheet prototype and supporting GitHub documentation.
 
 The spreadsheet can compare weekly performance data, calculate changes, generate marketing-friendly prompt lines, and create a final prompt block for AI reporting.
 
-The GitHub repo now includes structured sample data, a reusable prompt template, and a sample report output.
+The GitHub repo now includes structured sample data, a reusable prompt template, a sample report output, and a data dictionary.
 
 ## Upcoming Work
 Next steps include:
