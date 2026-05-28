@@ -3,12 +3,12 @@
 ## Project Summary
 This project turns weekly marketing or website performance data into a structured AI-ready performance report.
 
-The goal is to create a workflow that can compare weekly metrics, identify key changes, prepare a clean AI prompt, and eventually generate a polished marketing performance summary using automation.
+The goal is to create a workflow that can compare weekly metrics, identify key changes, prepare a clean AI prompt, validate the report inputs, and eventually generate a polished marketing performance summary using automation.
 
 ## Problem It Solves
-Marketing reporting often requires manually reviewing metrics, calculating week-over-week changes, identifying trends, and writing summaries.
+Marketing reporting often requires manually reviewing metrics, calculating week-over-week changes, identifying trends, checking for data quality issues, and writing summaries.
 
-This project is designed to automate part of that process by turning raw performance data into a structured report workflow.
+This project is designed to automate part of that process by turning raw performance data into a structured report workflow with validation, warning logic, and AI-ready prompt output.
 
 ## Planned Tools
 - Google Sheets
@@ -19,7 +19,7 @@ This project is designed to automate part of that process by turning raw perform
 - GitHub
 
 ## Current Status
-Day 2: Spreadsheet prototype, dynamic prompt logic, JSON sample data, API documentation, workflow planning, testing scenarios, and GitHub documentation are in progress.
+Day 3: Spreadsheet prototype, dynamic prompt logic, JSON sample data, API documentation, workflow planning, testing scenarios, validation logic, error-handling documentation, and GitHub documentation are in progress.
 
 ## Day 1 Progress
 - Created GitHub repository
@@ -50,6 +50,22 @@ Day 2: Spreadsheet prototype, dynamic prompt logic, JSON sample data, API docume
 - Created test data scenarios in JSON
 - Practiced reading nested JSON objects, arrays, and null values
 
+## Day 3 Progress
+- Created error-handling documentation for missing data, zero values, negative values, large changes, vague AI output, failed API requests, and empty AI responses
+- Created a spreadsheet validation checklist
+- Added a validation section to the AI Prompt Input tab
+- Added Required Data Status logic
+- Added Prompt Status logic
+- Added Report Readiness logic
+- Added warning logic for unusual traffic, conversion, and CTA click changes
+- Added Final Review Status logic
+- Added a Validation Summary line
+- Updated the final AI prompt formula to include the validation summary
+- Tested missing required data behavior
+- Tested large conversion change warning behavior
+- Fixed a circular reference issue caused by the final prompt and validation formulas depending on each other
+- Documented the formula debugging process and the corrected formula flow
+
 ## Current Workflow Draft
 Raw Data -> Weekly Comparison -> AI Prompt Input -> Final Prompt Block -> Generated Report
 
@@ -61,9 +77,34 @@ The spreadsheet now uses formulas to:
 - Generate marketing-friendly prompt lines
 - Identify whether metrics increased, decreased, or stayed the same
 - Combine individual prompt lines into one final AI-ready prompt block
+- Check whether required data is present
+- Check whether the final prompt source fields are ready
+- Flag unusual metric changes for review
+- Add validation status into the final prompt
 
 ## Current AI Prompt Flow
-Raw Data -> Weekly Comparison -> AI Prompt Input -> Final Prompt Block -> Generated Report
+Raw Data -> Weekly Comparison -> AI Prompt Input -> Validation Summary -> Final Prompt Block -> Generated Report
+
+## Current Validation Flow
+The spreadsheet now includes a basic validation and warning layer.
+
+Current validation flow:
+
+```text
+Raw Data
+   ↓
+Weekly Comparison calculations
+   ↓
+AI Prompt Input validation checks
+   ↓
+Warning checks
+   ↓
+Final Review Status
+   ↓
+Validation Summary
+   ↓
+Final Prompt Block
+```
 
 ## Planned Automation Flow
 The future workflow will use n8n to connect the spreadsheet data to an AI reporting process.
@@ -76,6 +117,8 @@ Google Sheets
 Weekly Comparison formulas
    ↓
 AI Prompt Input
+   ↓
+Validation checks
    ↓
 n8n workflow
    ↓
@@ -120,6 +163,18 @@ This repo currently includes:
 - `test-data-scenarios.json`  
   Sample JSON test data for multiple reporting scenarios.
 
+- `error-handling-notes.md`  
+  Documentation explaining possible data issues, AI output issues, API failures, and expected handling behavior.
+
+- `spreadsheet-validation-checklist.md`  
+  A checklist for reviewing required fields, numeric values, report logic, warning signs, and missing data before generating a report.
+
+- `validation-logic-summary.md`  
+  A plain-English explanation of the validation formulas, warning logic, final review status, and how this could support n8n later.
+
+- `formula-debugging-notes.md`  
+  Notes explaining the circular reference issue, what caused it, how it was fixed, and what was learned from the debugging process.
+
 ## Sample Data File
 This repo includes a sample JSON file:
 
@@ -157,24 +212,65 @@ Current test scenarios include:
 
 The goal is to make sure the final workflow does not only work when every metric improves.
 
+## Validation and Error Handling
+The spreadsheet now includes a basic quality-control layer before report generation.
+
+Current validation checks include:
+- Required metric data is present
+- Final prompt source fields are ready
+- Report readiness status is calculated
+- Traffic changes are checked for unusual movement
+- Conversion changes are checked for unusual movement
+- CTA click changes are checked for unusual movement
+- Final review status determines whether the report is ready or needs review
+- Validation summary is included in the final AI prompt
+
+Current validation outputs include:
+- `All required metric data present`
+- `Missing required metric data`
+- `Final prompt source fields ready`
+- `Final prompt source fields missing`
+- `Ready to generate report`
+- `Not ready to generate report`
+- `Review warnings before generating report`
+
+## Formula Debugging Note
+During Day 3, a circular reference issue appeared after the validation summary was added into the final prompt.
+
+The issue happened because the final prompt formula referenced validation status while the prompt status formula was checking the final prompt cell.
+
+The formula flow was corrected by changing Prompt Status to check the source fields instead of checking the final combined prompt cell.
+
+Corrected logic flow:
+
+```text
+Source fields
+   ↓
+Prompt Status
+   ↓
+Report Readiness
+   ↓
+Final Review Status
+   ↓
+Validation Summary
+   ↓
+Final Prompt
+```
+
+This allowed the validation summary to appear in the final prompt without causing `#REF!` errors.
+
 ## Current Project Status
 The project currently has a working spreadsheet prototype and supporting GitHub documentation.
 
-The spreadsheet can compare weekly performance data, calculate changes, generate marketing-friendly prompt lines, and create a final prompt block for AI reporting.
+The spreadsheet can compare weekly performance data, calculate changes, generate marketing-friendly prompt lines, validate report readiness, flag unusual metric changes, and create a final prompt block for AI reporting.
 
-The GitHub repo now includes structured sample data, a reusable prompt template, a sample report output, a data dictionary, workflow planning notes, API learning notes, request and response examples, and testing scenario data.
+The GitHub repo now includes structured sample data, a reusable prompt template, a sample report output, a data dictionary, workflow planning notes, API learning notes, request and response examples, testing scenario data, error-handling notes, validation documentation, and formula debugging notes.
 
 ## Upcoming Work
 Next steps include:
 - Review the current documentation for clarity
-- Add error-handling notes for missing data, bad inputs, and failed API responses
-- Continue learning basic JSON structure
-- Learn how n8n workflows use spreadsheet or JSON data
-- Connect spreadsheet data to an automation workflow
-- Test an AI-generated report output
-- Add screenshots and workflow documentation later in the project
-
-## Portfolio Goal
-This project is part of a larger AI, automation, and marketing technology learning plan.
-
-The final version should demonstrate the ability to structure marketing data, prepare AI-ready inputs, use automation tools, understand basic API request and response flow, test realistic reporting scenarios, and explain the business value of the workflow.
+- Add screenshots of the Google Sheet and key tabs
+- Add a simple workflow diagram or architecture diagram
+- Continue learning how n8n workflows use spreadsheet or JSON data
+- Create or log into n8n
+- Start
