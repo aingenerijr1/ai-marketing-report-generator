@@ -1,4 +1,5 @@
 Case Study Draft: AI Marketing Performance Report Generator
+
 Project Summary
 
 The AI Marketing Performance Report Generator is a spreadsheet-based reporting prototype that turns weekly marketing performance data into a structured AI-ready report workflow.
@@ -33,6 +34,7 @@ Small business owners
 Agencies
 Analysts preparing weekly reports
 Anyone who needs repeatable marketing performance summaries
+
 Current Project Status
 
 The current version is a spreadsheet prototype supported by GitHub documentation.
@@ -77,16 +79,18 @@ n8n
 AI API
 Google Docs or email output
 Possible scheduled automation
+
 Spreadsheet Structure
 
 The Google Sheet includes these tabs:
 
-Tab	Purpose
-Raw Data	Stores weekly marketing performance data
-Weekly Comparison	Compares previous week and current week metrics
-AI Prompt Input	Converts spreadsheet values into AI-ready prompt language
-Generated Report	Stores a sample report output
-Notes	Tracks progress, learning notes, JSON practice, and debugging notes
+Tab | Purpose
+Raw Data | Stores weekly marketing performance data
+Weekly Comparison | Compares previous week and current week metrics
+AI Prompt Input | Converts spreadsheet values into AI-ready prompt language
+Generated Report | Stores a sample report output
+Notes | Tracks progress, learning notes, JSON practice, and debugging notes
+
 Current Workflow
 
 The current manual spreadsheet workflow is:
@@ -101,6 +105,7 @@ The Final Review Status determines whether the report is ready.
 The Validation Summary is added to the final prompt.
 The final prompt can be used to generate a marketing report.
 A sample report output is stored in the Generated Report tab.
+
 Workflow Diagram
 
 Current spreadsheet workflow:
@@ -147,6 +152,7 @@ CTA clicks
 Top channel
 Top page
 Notes
+
 Sample Data
 
 The current sample data compares two weekly reporting periods.
@@ -172,6 +178,7 @@ Conversions: 57
 CTA clicks: 162
 Top channel: Organic Search
 Top page: /services
+
 Formula Logic
 
 The spreadsheet calculates week-over-week changes for:
@@ -216,6 +223,7 @@ Final prompt source fields missing
 Ready to generate report
 Not ready to generate report
 Review warnings before generating report
+
 Warning Logic
 
 The spreadsheet includes warning logic for unusual metric changes.
@@ -273,6 +281,7 @@ In this workflow:
 
 The request is the data sent to the AI model.
 The response is the report returned by the AI model.
+
 Testing Scenarios
 
 The project includes testing scenarios for realistic reporting situations.
@@ -288,17 +297,21 @@ Unusually large changes
 
 The goal is to avoid only testing the happy path where every metric improves.
 
-Screenshots
+Screenshots / Project Evidence
 
-The project includes screenshots for:
+The project includes screenshots that document the main parts of the AI Marketing Performance Report Generator:
 
-Raw Data tab
-Weekly Comparison tab
-AI Prompt Input tab
-Generated Report tab
-Notes progress log
+screenshots/01-raw-data.png shows the sample weekly marketing performance data used as the project input.
 
-These screenshots provide visual evidence of the project workflow and spreadsheet prototype.
+screenshots/02-weekly-comparison.png shows the week-over-week comparison formulas for users, sessions, engagement rate, conversions, and CTA clicks.
+
+screenshots/03-ai-prompt-input.png shows the AI-ready prompt structure, validation checks, warning notes, and final review status.
+
+screenshots/04-generated-report.png shows a sample AI-generated weekly marketing performance summary.
+
+screenshots/05-notes-progress-log.png shows the project notes and progress log used to document the build process.
+
+These screenshots provide visual proof of the spreadsheet workflow, validation logic, prompt structure, and sample report output.
 
 Sample Output
 
@@ -325,7 +338,9 @@ Helping teams identify important metric changes
 Improving reporting quality through validation checks
 Making AI-generated reports safer by checking data readiness first
 Creating a repeatable workflow that could later be automated
+
 Challenges and Fixes
+
 Challenge: Creating Dynamic Prompt Lines
 
 The first version of the AI Prompt Input tab used manually written prompt text.
@@ -390,11 +405,12 @@ Planning n8n automation
 Thinking through validation and error handling
 Debugging spreadsheet formula logic
 Documenting work as the project develops
+
 What I Would Improve Next
 
 Next improvements include:
 
-Add more screenshots
+Add clearer captions or references for each screenshot
 Add a cleaner workflow or architecture diagram
 Improve spreadsheet formatting
 Add conditional formatting for validation warnings
@@ -403,6 +419,7 @@ Start learning how n8n reads Google Sheets data
 Build the first simple n8n workflow
 Test sending the prompt to an AI model
 Save the generated report to Google Sheets or Google Docs
+
 Future Version
 
 A future automated version should:
@@ -415,6 +432,7 @@ Generate a structured marketing report.
 Save the report to Google Sheets, Google Docs, or email.
 Log errors or failed runs.
 Include screenshots and documentation for the final workflow.
+
 Portfolio Positioning
 
 This project demonstrates early skills in:
