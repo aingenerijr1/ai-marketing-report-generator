@@ -92,11 +92,13 @@ That item contained:
 
 ## Screenshot Evidence
 
-Recommended screenshot file:
+No screenshot has been added for this test yet.
 
-`screenshots/16-n8n-final-prompt-isolation-test.png`
+A future screenshot could be saved as:
 
-This screenshot should show the Find Final Prompt node returning one item with the Final Prompt row.
+`screenshots/14-n8n-final-prompt-isolation-test.png`
+
+That screenshot should show the Find Final Prompt node returning one item with the Final Prompt row.
 
 ## What This Test Proves
 
