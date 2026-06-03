@@ -140,11 +140,13 @@ After restoring the value, the spreadsheet validation status returned to Ready t
 
 ## Screenshot Evidence
 
-Recommended screenshot file:
+No screenshot has been added for this test yet.
+
+A future screenshot could be saved as:
 
 `screenshots/14-n8n-automation-log-write-test.png`
 
-This screenshot should show either the successful n8n append row node output or the new row added to the Automation Log tab.
+That screenshot should show either the successful n8n append row node output or the new row added to the Automation Log tab.
 
 ## What This Test Proves
 
