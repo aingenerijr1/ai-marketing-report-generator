@@ -138,18 +138,31 @@ Completed:
 
 - n8n can read the Raw Data tab.
 - n8n can read the AI Prompt Input tab.
+- Created the Automation Output tab to provide a cleaner field/value structure for n8n.
 - n8n can read the Automation Output tab.
-- n8n can read the final prompt and validation fields.
+- n8n can read the final prompt and validation fields from the Automation Output tab.
 - n8n can use an If node to check Final Review Status.
 - n8n can identify when the report is ready to generate.
+- n8n can avoid passing the readiness check when required data is missing.
+- n8n can avoid passing the readiness check when warnings need review.
+- n8n can create a false branch status message when the report is not ready.
+- Automation Output read test is complete.
+- Readiness check test is complete.
+- Not-ready path test is complete.
+- Warning review path test is complete.
+- Readiness gate summary is complete.
+- False branch plan is complete.
+- False branch message test is complete.
 
 Not completed:
 
-- False branch handling
-- Warning branch handling
+- Saving the false branch message back to Google Sheets
+- Separate warning branch handling
+- Separate not-ready branch handling
 - AI API request
 - Automated report generation
 - Automated report saving
+- Email, Google Docs, or other report delivery output
 - Scheduled workflow
 
 ## Important Debugging Note
