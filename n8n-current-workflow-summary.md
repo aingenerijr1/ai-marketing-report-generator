@@ -27,6 +27,7 @@ The current goal of the workflow is to prove that n8n can:
 - Read prompt and validation fields
 - Check whether the report is ready
 - Route not-ready cases to a false branch message
+- Write blocked workflow runs to the Automation Log tab
 
 The workflow does not generate a report yet.
 
@@ -40,21 +41,25 @@ The current workflow includes:
 - Google Sheets node for Raw Data
 - Google Sheets node for AI Prompt Input
 - Google Sheets node for Automation Output
-- If node for readiness checking
-- Set node for false branch message
+- Find Final Review Status node
+- Check If Report Is Ready node
+- Edit Fields node for false branch message
+- Google Sheets Append Row node for Automation Log
 
 ## Current Workflow Structure
 
 ```text
 Manual Trigger
    ↓
-Google Sheets: Read Raw Data
+Raw Data Sheet
    ↓
-Google Sheets: Read AI Prompt Input
+AI Prompt Input Sheet
    ↓
-Google Sheets: Read Automation Output
+Automation Output Sheet
    ↓
-If Node: Check Final Review Status
+Find Final Review Status
+   ↓
+Check If Report Is Ready
    ↓
 True Branch: Report is ready
    ↓
@@ -62,32 +67,84 @@ Future AI API step
 
 False Branch:
    ↓
-Set Node: Create status_message
+Edit Fields
+   ↓
+Create status_message
+   ↓
+Append Row to Automation Log
 ```
 
-## Readiness Check Logic
+## Readiness Check Flow
 
-The If node checks:
+The workflow now uses two steps for readiness checking.
+
+## Step 1: Find Final Review Status
+
+The first If node is named:
+
+Find Final Review Status
+
+It checks:
 
 ```text
 Field is equal to Final Review Status
-AND
+```
+
+Purpose:
+
+This node isolates the one row from the Automation Output tab that contains the final readiness status.
+
+## Step 2: Check If Report Is Ready
+
+The second If node is named:
+
+Check If Report Is Ready
+
+It checks:
+
+```text
 Value is equal to Ready to generate report
 ```
 
-If both conditions are true, the workflow treats the report as ready.
+Purpose:
 
-If the conditions are not true, the workflow moves to the false branch.
+This node checks whether the isolated Final Review Status row says the report is ready.
 
 ## False Branch Message
 
-The false branch currently creates this message:
+When the report is not ready, the false branch creates this message:
 
 ```text
 Report not generated. Review spreadsheet validation status before continuing.
 ```
 
-This message is created with a Set node.
+This message is created with the Edit Fields node.
+
+## Automation Log Writeback
+
+The workflow now writes blocked workflow runs to the Automation Log tab in Google Sheets.
+
+The Automation Log tab includes these columns:
+
+| Column | Purpose |
+| --- | --- |
+| Timestamp | Records when the workflow log row was created |
+| Status | Shows whether the report was generated or not generated |
+| Message | Explains why the workflow stopped |
+| Final Review Status | Stores the spreadsheet readiness status |
+| Notes | Adds extra context about the workflow result |
+
+## Automation Log Row Example
+
+A blocked workflow run writes a row like this:
+
+| Field | Example Value |
+| --- | --- |
+| Timestamp | Current n8n run timestamp |
+| Status | Not Generated |
+| Message | Report not generated. Review spreadsheet validation status before continuing. |
+| Final Review Status | Not ready to generate report |
+| Notes | Workflow stopped because report was not ready or needed review. |
 
 ## Current Spreadsheet Source
 
@@ -100,6 +157,7 @@ The workflow has tested these tabs:
 - Raw Data
 - AI Prompt Input
 - Automation Output
+- Automation Log
 
 ## Automation Output Tab
 
@@ -120,6 +178,16 @@ It uses a simple two-column structure:
 | Conversion Change Warning | Conversion warning status |
 | CTA Click Change Warning | CTA click warning status |
 
+## Automation Log Tab
+
+The Automation Log tab was added so n8n can record blocked workflow runs.
+
+It currently supports logging when:
+
+- Required data is missing
+- Warnings need review
+- Final Review Status is not Ready to generate report
+
 ## Tests Completed
 
 The following n8n tests are complete:
@@ -131,6 +199,9 @@ The following n8n tests are complete:
 - Not-ready path test
 - Warning review path test
 - False branch message test
+- Clean readiness flow test
+- Automation Log write test for missing data
+- Automation Log write test for warning review status
 
 ## Screenshot Evidence
 
@@ -143,6 +214,12 @@ The current n8n workflow is supported by these screenshots:
 - `screenshots/10-n8n-not-ready-path-test.png`
 - `screenshots/11-n8n-warning-review-path-test.png`
 - `screenshots/12-n8n-false-branch-message-test.png`
+- `screenshots/13-n8n-clean-readiness-flow-confirmed.png`
+
+Additional recommended screenshots:
+
+- `screenshots/14-n8n-automation-log-write-test.png`
+- `screenshots/15-n8n-warning-review-log-test.png`
 
 ## Related Documentation Files
 
@@ -159,6 +236,10 @@ Related n8n documentation files include:
 - `n8n-false-branch-test-notes.md`
 - `n8n-readiness-plan.md`
 - `n8n-field-mapping-plan.md`
+- `n8n-current-workflow-summary.md`
+- `n8n-clean-readiness-flow-test-notes.md`
+- `n8n-automation-log-test-notes.md`
+- `n8n-warning-review-log-test-notes.md`
 
 ## What Works Now
 
@@ -167,10 +248,14 @@ The workflow currently works for:
 - Reading source spreadsheet data
 - Reading prompt-related spreadsheet data
 - Reading clean automation output fields
+- Isolating the Final Review Status row
 - Checking whether the report is ready
+- Passing the workflow only when the report is ready
 - Blocking missing-data cases
 - Blocking warning-review cases
 - Creating a false branch status message
+- Writing missing-data blocked runs to Automation Log
+- Writing warning-review blocked runs to Automation Log
 
 ## What Is Not Built Yet
 
@@ -179,29 +264,35 @@ The workflow does not yet include:
 - AI API connection
 - Sending the final prompt to an AI model
 - Saving generated report output
-- Saving false branch messages back to Google Sheets
 - Sending email or Google Docs output
 - Scheduled automation
 - Separate false branch messages for missing data versus warning review
+- True branch report generation logic
 
 ## Recommended Next Step
 
-The next recommended technical step is to decide between two options:
+The next recommended technical step is to prepare the true branch for a future AI API test.
 
-Option 1:
+Before calling an AI model, the workflow should identify and isolate the Final Prompt row from the Automation Output tab.
 
-Save the false branch status message back to Google Sheets.
+The next safe build layer should be:
 
-Option 2:
+```text
+Ready path
+   ↓
+Find Final Prompt
+   ↓
+Confirm final prompt value is available
+   ↓
+Stop before AI API
+```
 
-Prepare the true branch for a future AI API test.
-
-The safer next step is probably Option 1 because it improves workflow feedback before adding AI.
+The AI API should still wait until the workflow can clearly isolate the final prompt text.
 
 ## Main Takeaway
 
-The current n8n workflow has a working validation gate.
+The current n8n workflow has a working validation and logging gate.
 
-It can read the spreadsheet, check report readiness, and create a clear message when the report is not ready.
+It can read the spreadsheet, check report readiness, block not-ready or warning-review cases, and write blocked runs to the Automation Log tab.
 
 This creates a safer foundation before connecting the workflow to an AI API.
